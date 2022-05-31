@@ -18,8 +18,11 @@ public class Scenario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
+    @Column(name="scenarioName")
     private String scenarioName;
+    @Column(name="scenarioAttributes", columnDefinition="CLOB NOT NULL")
     private HashMap<String, Object> scenarioAttributes;
 
 }
