@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class scenarioController {
+public class ScenarioController {
 
     public static final Long EMPTY_ID = null;
     private final ScenarioService scenarioService;
