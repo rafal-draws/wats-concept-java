@@ -1,0 +1,27 @@
+{
+"scenarioName":"scenario1",
+"scenarioAttributes":{
+    "1" : {"goToURL":"https://costam.com"},
+    "2" : {
+        "option":"XPATH",
+        "value":"//*[@id='wowzerz']"
+    }
+}
+}
+{
+"scenarioName":"scenario2",
+"scenarioAttributes":{
+    "1" : {
+        "goToURL":"https://costam.com"
+    },
+    "2" : {
+        "findElementBy":"XPATH",
+        "value":"//*[@id='wowzerz']"
+        },
+    "3" : {
+        "isElementVisible":"hastext",
+        "value":"\"optional text with cites\""
+
+    }
+}
+}
