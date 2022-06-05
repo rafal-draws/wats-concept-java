@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 public class ExecuteScenariosController {
 
     private final ExecutorService executorService;
-    @GetMapping("/scenarios/execute")
-    public String executeScenarios(){
-        return executorService.executeScenarios();
+    @GetMapping("/scenarios/{id}/execute")
+    public String executeScenarios(@PathVariable Long id){
+        return executorService.getStepsForDriver(id);
     }
 
 }

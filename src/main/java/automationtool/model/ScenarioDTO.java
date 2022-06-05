@@ -7,5 +7,5 @@ import java.util.HashMap;
 @Getter
 public class ScenarioDTO {
     private String scenarioName;
-    private HashMap<String, Object> scenarioAttributes;
+    private HashMap<Integer, Object> scenarioAttributes;
 }
