@@ -3,8 +3,9 @@
 "scenarioAttributes":{
     "1" : {"goToURL":"https://costam.com"},
     "2" : {
-        "option":"XPATH",
-        "value":"//*[@id='wowzerz']"
+        "sendKeys":"login",
+        "findElementBy":"XPATH",
+        "value":"//*[@id='loginfield']"
     }
 }
 }
