@@ -3,8 +3,9 @@
 "scenarioAttributes":{
     "1" : {"goToURL":"https://costam.com"},
     "2" : {
-        "option":"XPATH",
-        "value":"//*[@id='wowzerz']"
+        "sendKeys":"login",
+        "findElementBy":"XPATH",
+        "value":"//*[@id='loginfield']"
     }
 }
 }
@@ -22,6 +23,18 @@
         "isElementVisible":"hastext",
         "value":"\"optional text with cites\""
 
+    }
+}
+}
+
+{
+"scenarioName":"scenario3",
+"scenarioAttributes":{
+    "1" : {
+        "goToURL":"https://costam.com/"
+    },
+    "2" : {
+        "assertCurrentUrl":"https://costam.com/"
     }
 }
 }

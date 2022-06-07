@@ -19,24 +19,24 @@ public class AutomationToolApplication {
 		SpringApplication.run(AutomationToolApplication.class, args);
 	}
 
-//	@Bean
-//	public WebDriver chromeWebDriver(){
-//		WebDriverManager.chromedriver().setup();
-//		ChromeOptions options = new ChromeOptions();
-//
-//		options.addArguments("--start-maximized");
+	@Bean
+	public WebDriver chromeWebDriver(){
+		WebDriverManager.chromedriver().setup();
+		ChromeOptions options = new ChromeOptions();
+
+		options.addArguments("--start-maximized");
 //		options.addArguments("--headless");
-//		options.addArguments("--disable-gpu");
-//		options.addArguments("--no-sandbox");
-//		options.addArguments("--ignore-certificate-errors");
-//
-////		additional chrome prefs
-//		HashMap<String, String> chromePrefs = new HashMap<String, String>();
-//		chromePrefs.put("profile.default_content_settings.popups", "false");
-//
-//		options.setExperimentalOption("prefs", chromePrefs);
-//
-//		return new ChromeDriver(options);
-//
-//	}
+		options.addArguments("--disable-gpu");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--ignore-certificate-errors");
+
+//		additional chrome prefs
+		HashMap<String, String> chromePrefs = new HashMap<String, String>();
+		chromePrefs.put("profile.default_content_settings.popups", "false");
+
+		options.setExperimentalOption("prefs", chromePrefs);
+
+		return new ChromeDriver(options);
+
+	}
 }
