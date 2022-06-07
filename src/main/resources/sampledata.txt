@@ -26,3 +26,15 @@
     }
 }
 }
+
+{
+"scenarioName":"scenario3",
+"scenarioAttributes":{
+    "1" : {
+        "goToURL":"https://costam.com/"
+    },
+    "2" : {
+        "assertCurrentUrl":"https://costam.com/"
+    }
+}
+}

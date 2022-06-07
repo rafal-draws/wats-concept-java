@@ -2,9 +2,11 @@ package automationtool.services;
 
 import automationtool.model.Scenario;
 import automationtool.repositories.ScenarioRepository;
+import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,32 +16,55 @@ import java.util.Map;
 public class ExecutorService {
     private final ScenarioRepository scenarioRepository;
     private final ScenarioService scenarioService;
+    private final DriverService driverService;
 
     public String executeScenarios(){
 
-        StringBuilder output = new StringBuilder("");
+        StringBuilder output = new StringBuilder();
 
         List<Scenario> scenarios = scenarioService.getScenarios();
         int scenariosCount = scenarios.size();
         for (Scenario s : scenarios) {
-            //todo getScenarioAttributes to be interpreted
-            output.append(s.getScenarioAttributes());
+            //todo create a scenario suite
+            //for scenario execute steps
+            executeSteps(getStepsFromScenarioAttributesValues(s.getId()));
         }
-        return output.toString();
+        return "all tests passed";
     }
 
-    public String getStepsForDriver(Long scenarioId){
-        StringBuilder response = new StringBuilder();
+    public String executeScenario(Long scenarioId){
+        //execute steps of one scenario
+        executeSteps(getStepsFromScenarioAttributesValues(scenarioId));
+        return "Scenario" + scenarioId + " has been executed successfully";
+    }
+
+    public List<Object> getStepsFromScenarioAttributesValues(Long scenarioId){
+        List<Object> response = new ArrayList<>();
+
         Scenario scenario = scenarioService.getScenario(scenarioId);
         HashMap<Integer, Object> steps = scenario.getScenarioAttributes();
         for (Map.Entry<Integer, Object> set : steps.entrySet()){
-            interpretStep(String.valueOf(set.getValue()));
+            response.add(set.getValue());
         }
-
-        return String.valueOf(response);
+        return response;
     }
 
-    private void interpretStep(String step){
-        System.out.println((step).replaceAll("[{}]", ""));
+    public void executeSteps(List<Object> response){
+        //todo scenario flag
+        boolean ScenarioFlag = true;
+
+        for (Object obj : response){
+            JsonObject jsonObj = (JsonObject) obj;
+
+            if (jsonObj.has("goToUrl")) {
+                //goes to url
+                driverService.goToUrl(String.valueOf(jsonObj.get("goToUrl")));
+                return;
+            } else if (jsonObj.has("assertCurrentUrl")) {
+                //asserts cur url with value
+                ScenarioFlag = driverService.assertCurrentUrl(String.valueOf(jsonObj.get("assertCurrentUrl")));
+                return;
+            }
+        }
         }
 }
