@@ -1,4 +1,4 @@
-package automationtool.model;
+package automationtool.model.dto;
 
 import lombok.Getter;
 
