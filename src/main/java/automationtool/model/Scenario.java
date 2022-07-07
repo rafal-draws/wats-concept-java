@@ -22,7 +22,7 @@ public class Scenario {
     private Long id;
     @Column(name="scenarioName")
     private String scenarioName;
-    @Column(name="scenarioAttributes", columnDefinition="CLOB NOT NULL")
+    @Column(name="scenarioAttributes")
     private HashMap<Integer, Object> scenarioAttributes;
 
 }
